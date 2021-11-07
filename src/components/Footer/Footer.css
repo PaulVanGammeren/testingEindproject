@@ -1,0 +1,33 @@
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+.footer-ul{
+    display: flex;
+    background-color: darkseagreen ;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+}
+li {
+    display: inline-block;
+
+    align-items: center;
+    padding-right: 40px;
+    padding-left: 40px;
+
+
+}
+a{
+    text-decoration: none;
+}
+
+.copyright {
+    display: flex;
+    padding-bottom: 13px;
+    justify-content: center;
+    align-content: center;
+    border-bottom: black 1px solid;
+
+}

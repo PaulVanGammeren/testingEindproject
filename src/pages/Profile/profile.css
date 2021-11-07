@@ -1,0 +1,44 @@
+.profile-content {
+    width: 100%;
+    margin: 10px;
+    display: inline-flex;
+    flex-direction: row;
+    padding-right: 20px;
+
+
+    /*background-color: #61dafb;*/
+}
+
+.photo-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: .5rem;
+    padding-right: 20px;
+
+
+
+}
+.user-details {
+    display: flex;
+    flex-direction: column;
+    align-items: revert;
+    width: 25%;
+
+}
+.user-history{
+    width: 25%;
+ margin:5px;
+
+
+}
+.before{
+    border: 1px dashed;
+}
+.after{
+    border: 1px dashed;
+}
+
+
+
+

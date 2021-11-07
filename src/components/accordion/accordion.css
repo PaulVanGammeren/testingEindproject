@@ -1,0 +1,60 @@
+.accordion {
+    background-color: #eee;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    border: none;
+    outline: none;
+    transition: background-color 0.4s ease;
+    margin: 5px;
+}
+
+.accordion:hover,
+.active{
+    background-color: #ccc;
+}
+.accordion{
+    border-radius: 5px;
+    height: 20px;
+    /*width: 100%;*/
+
+}
+
+.accordion_section{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+
+}
+
+.accordion_icon {
+    margin-left: auto;
+    transition: transform 0.2s ease;
+
+}
+ /*style to rotate icon*/
+.rotate{
+    transform: rotate(90deg);
+    }
+
+.accordion_content{
+    background-color: #eeeeee;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    border-radius: 5px;
+    width: 200%;
+
+}
+
+
+
+.accordion_text{
+    padding: 18px;
+    border-radius: 5px;
+}
+.agenda-container2{
+    align-items: center;
+}
+

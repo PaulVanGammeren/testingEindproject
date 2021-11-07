@@ -1,0 +1,13 @@
+.littlered {
+    color: red;
+    font-color:red;
+    font-size: 8px;
+}
+
+.registratie{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

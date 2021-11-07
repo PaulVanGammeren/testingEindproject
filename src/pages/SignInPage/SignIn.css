@@ -1,0 +1,19 @@
+.login {
+    justify-content: center;
+    display: flex;
+}
+
+.loginP {
+    justify-content: center;
+    display: flex;
+}
+
+.userlogin {
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+.bottom-login{
+    justify-content: center;
+    display: flex;
+}

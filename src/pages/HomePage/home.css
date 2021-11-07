@@ -1,0 +1,17 @@
+.intro {
+
+    font-size: 20px ;
+    margin: 30px;
+
+}
+.banner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+
+.home-content{
+    display: flex;
+    justify-content: center;
+}

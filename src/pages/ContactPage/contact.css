@@ -1,0 +1,31 @@
+.contact-content{
+    display: flex;
+
+}
+.contact-form{
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+.contact-content-form{
+    display: flex;
+    width: 50%;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+.contact-form-a{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+.contact-text{
+    width: 80%;
+    height: 300px;
+}
