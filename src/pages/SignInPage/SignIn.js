@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React, {useContext, useState} from 'react';
 import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
-import {AuthContext} from "../../components/AuthContext";
+import {AuthContext} from "../../components/Auth/AuthContext";
 import "./SignIn.css"
 
 
@@ -28,22 +28,33 @@ import "./SignIn.css"
 function SignIn() {
     const { handleSubmit, register } = useForm();
     const { login } = useContext(AuthContext);
+    const [error, setError] = useState('');
 
     async function onSubmit(data) {
         console.log(data);
+        setError('');
 
         try {
-            const result = await axios.post('http://localhost:8080/authenticate', data);
+            const result = await axios.post('http://localhost:8080/authenticate',
+            {
+               username: data.username,
+                password :data.password,
+
+            });
             console.log(result);
-            login(result.data.accessToken);
+            //geeft jwt aan de context
+            login(result.data.jwt);
 
         } catch(e) {
             console.error(e);
+            setError(`Het inloggen is mislukt. combinatie username en wachtwoord incorrect. Probeer het opnieuw (${e.message})`);
+
         }
     }
 
     return (
         <>
+
             <h1 className="login">Inloggen</h1>
             <p className="loginP">Log in om uw gegevens in te zien</p>
 
@@ -73,7 +84,8 @@ function SignIn() {
                 >
                     Inloggen
                 </button>
-            </form>
+
+            </form> {error && <p className="error-message">{error}</p>}
             <p className="bottom-login">Heb je nog geen account?&nbsp;<Link to="/signup">Registreer</Link> &nbsp;je dan eerst.</p>
         </>
     );

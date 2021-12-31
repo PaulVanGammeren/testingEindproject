@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React from "react";
  import {Switch, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
@@ -7,59 +7,42 @@ import Home from "./pages/HomePage/Home";
 import SignIn from "./pages/SignInPage/SignIn";
 import SignUp from "./pages/SignUpPage/SignUp";
 import Profile from "./pages/Profile/Profile";
-import {AuthContext} from "./components/AuthContext";
 import EmployeePage from "./pages/EmployeePage/EmployeePage";
 import AdminPage from "./pages/adminpage/AdminPage";
-import SignInAdmin from "./pages/signInAdmin/SingInAdmin";
 import CreateAccount from "./pages/SignUpPage/createAccount";
 import ContactPage from "./pages/ContactPage/ContactPage";
+import NewAdvicePage from "./pages/NewAdvice/NewAdvice";
+import PrivateAdminRoute from "./components/PrivateRoute/PrivateRouteAdmin";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 
 
 function App() {
-     // const {isAuth} = useContext(AuthContext)
 
   return (
       <>
    <Header/>
 
               <Switch>
-
-                  <Route exact path="/">
-                      <Home />
-                  </Route>
-
-                  <Route exact path="/SignIn">
-                      <SignIn />
-                  </Route>
-
-                  <Route exact path="/SignUp">
-                      <SignUp />
-                  </Route>
-
-                  <Route exact path="/profile">
-                      <Profile />
-                  </Route>
-
-                  <Route exact path="/signInAdmin" >
-                      <SignInAdmin />
-                  </Route>
+                  {/*Open route*/}
+                  <Route exact path="/"><Home /></Route>
+                  {/*Open route*/}
+                  <Route exact path="/SignIn"> <SignIn /> </Route>
+                  {/*Open route  */}
+                  <Route exact path="/SignUp"> <SignUp /> </Route>
+                  {/*Private User  */}
+                  <Route exact path="/profile"> <Profile /> </Route>
+                  {/*private admin*/}
+                  <Route exact path="/Admin"> <AdminPage /> </Route>
+                  {/*Private Admin*/}
+                  <Route exact path="/employee"> <EmployeePage /> </Route>
+                  {/*Private Admin */}
+                  <Route exact path="/createAccount"> <CreateAccount /> </Route>
+                  {/*Open route*/}
+                  <Route exact path="/contact"> <ContactPage /> </Route>
+                  {/*Private Route Admin*/}
+                  <Route exact path="/newAdvice"> <NewAdvicePage /> </Route>
 
 
-                  <Route exact path="/Admin">
-                      <AdminPage />
-                  </Route>
-
-                  <Route exact path="/employee">
-                      <EmployeePage />
-                  </Route>
-
-                  <Route exact path="/createAccount">
-                      <CreateAccount />
-                  </Route>
-
-                  <Route exact path="/contact">
-                      <ContactPage/>
-                  </Route>
               </Switch>
 
 

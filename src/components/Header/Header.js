@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import "./Header.css"
 import logo from "../../assets/logoklein2.0.jpg"
 import {NavLink} from "react-router-dom";
-import {AuthContext} from "../AuthContext";
+import {AuthContext} from "../Auth/AuthContext";
 
 function Header() {
 

@@ -21,7 +21,7 @@ function Accordion(props){
                <p className="accordion_title">{props.title}</p>
                 <Icon className={`${rotate}`}  width={10} fill={"#777"} />
             </button>
-            <div ref={content}
+            <div ref={props.content}
                  style={{maxHeight: `${height}`}}
                  className="accordion_content">
                 <div className="accordion__text"

@@ -1,9 +1,7 @@
-import React, {useContext, useEffect, useState} from 'react';
-import {Link, NavLink} from 'react-router-dom';
-import {AuthContext} from "../../components/AuthContext";
-import axios from 'axios';
-// import "./EmployeePage.css";
-import Accordion from "../../components/accordion/accordion";
+import React from 'react';
+import { NavLink} from 'react-router-dom';
+
+
 import "./admin.css"
 
 

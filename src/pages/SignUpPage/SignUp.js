@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
-import {Link, useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 import {useForm} from 'react-hook-form';
 import "./SignUp.css"
 
@@ -21,14 +21,14 @@ function SignUp() {
         console.log(data);
 
         try {
-            const result = await axios.post('http://localhost:8080/customers', {
-                headers: {
-                    "Content-Type": "application/json",
+            const result = await axios.post('http://localhost:8080/users', {
+                // headers: {
+                //     "Content-Type": "application/json",
 
                     email: data.email,
                     password: data.password,
                     username: data.username,
-                } });
+                 });
 
 
             console.log(result);
