@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import './SearchBar.css';
 
 
-function SearchBar({ setUserNameHandler }) {
+function SearchBar({ setUsernameHandler }) {
     const [query, setQuery] = useState('');
 
 
     function onFormSubmit(e) {
         e.preventDefault();
         console.log('submitted!');
-        setUserNameHandler(query);
+        console.log(query)
+        setUsernameHandler(query);
+
     }
 
     return (

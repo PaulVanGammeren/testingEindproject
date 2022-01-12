@@ -16,8 +16,7 @@ header {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-left: 30px;
-    background-color: green;
+    background-color: darkseagreen;
     justify-content: center;
 }
 

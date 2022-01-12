@@ -5,18 +5,24 @@ import axios from 'axios';
 import "./profile.css"
 import "./NatureSkins.preview-2.jpg"
 import pic from "../../assets/downloaden(1).png"
-import Accordion from "../../components/accordion/accordion";
+import pic2 from "../../assets/logoklein2.0.jpg"
 import {useForm} from "react-hook-form";
-import picture from "../../assets/Star treatments.jpg"
+
 function Profile() {
     const [profileData, setProfileData] = useState([]);
-
     const {user} = useContext(AuthContext);
     const [error, setError] = useState('')
     const [file, setFile] = useState('')
     const {handleSubmit, register} = useForm();
     const [submitSuccess, setSubmitSuccess] = useState(false);
-    const [picData, setPicData] = useState('')
+    const [imageOne, setImageOne] = useState('')
+    const [imageTwo, setImageTwo] = useState('')
+    const [advice, setAdvice ] = useState('klant heeft nog geen eerder advies gekregen')
+    const [productAdvice, setProductAdvice] = useState('klant heeft nog geen eerder advies gekregen')
+    const [dateOfAppointment, setDateOfAppointment] =useState("klant is nog niet eerder geweest")
+
+
+
 
     const fileMaker = (e) => {
         console.log(e.target.files[0]);
@@ -25,13 +31,6 @@ function Profile() {
 
 
     useEffect(() => {
-        let reader = new FileReader()
-        let file = picData
-
-        reader.onloadend =() => {
-
-        }
-        reader.readAsDataURL(file)
 
         async function fetchProfileData() {
             const token = localStorage.getItem('token');
@@ -44,10 +43,16 @@ function Profile() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                setProfileData(result.data);
-                setPicData(result.data.image[10].file)
-                console.log(picData)
                 console.log(result.data)
+                setProfileData(result.data);
+                const picIndex = result.data.image.length
+                setImageOne(`data:image/jpeg;base64,${result.data.image[0].file}`)
+                setImageTwo(`data:image/jpeg;base64,${result.data.image[picIndex -1].file}`)
+                setAdvice (result.data.consult[result.data.consult.length -1].advice)
+                setProductAdvice ((result.data.consult[result.data.consult.length -1].productAdvice))
+                setDateOfAppointment (result.data.consult[result.data.consult.length -1].dateOfAppointment)
+
+            //
             } catch (e) {
                 console.error(e);
             }
@@ -56,7 +61,8 @@ function Profile() {
 
         fetchProfileData();
     }, [user])
-    console.log(profileData)
+
+
 
     async function onSubmit() {
 
@@ -80,85 +86,80 @@ function Profile() {
             console.log("foto is geupload")
             setSubmitSuccess(true);
 
-
-            ;
         } catch (error) {
 
             console.error(error);
         }
 
-    }
+
+    };
+
+
+
 
 
     return (
         <>
+            <div className='profileheader'> <h2><strong>Profielpagina</strong></h2> </div>
 
             <div className="profile-content">
-                <div className="photo-container">
-                    <img className="before" src={pic} alt="before" height="300px"/>
-
-
-                    <form encType='multipart/form-data' className="uploadProfile" onSubmit={handleSubmit(onSubmit)}>
-                        <label htmlFor="profile">Add image</label>
-                        <p {...register("username")}></p>
-
-                        <input type="file"
-                               id="file"
-                               name="profilepic"
-                               {...register("profile")}
-                               onChange={fileMaker}
-
-                        />
-                        <button type="submit"
-                                className="upload"
-                        >
-                            upload foto
-                        </button>
-                        {error && <p className="error-message">{error}</p>}
-                    </form>
-                </div>
-
 
                 <div className="user-details">
-                    <div className="profile-header">
-                        <h1>Profielpagina</h1>
-                        <h2>Gegevens</h2>
-                    </div>
-                        {/*key/id checken, map functie  */}
-                    <span className="user-details">
-                        {console.log(picData)}
+
+
                         {Object.keys(profileData).length > 0 && <>
                             <div className="photo-container">
-                                <img className="after" src={profileData.image[10].file} alt="proflie"/>
-                                {/*{console.log(profileData.image.file}*/}
-                            </div>
+                                {imageOne === '' ? <img className="img" src={pic} alt="before"/> : <img  src={imageOne} alt="profile"  />}
+                                <p>before foto</p>
+
+                         </div>
+                                <div className="photo-container">
+                                {imageTwo === '' ? <img src={pic2} alt="after"/> : <img src={imageTwo} alt="profile"  />}
+                                    <p>after foto</p>
+                                </div>
+                            < div className="user">
                             <p><strong>Name:</strong>{profileData.username}</p>
                             <p><strong>Email:</strong>{profileData.email} </p>
-                            <p><strong>Advies:</strong>{profileData.consult[1].advice} </p>
-                            <p><strong>Product Advies:</strong>{profileData.consult[0].productAdvice} </p>
-                            <p><strong>Laatste Afspraak:</strong>{profileData.consult[0].dateOfAppointment}</p>
-                            {profileData.consult.map((hallo) => {
-                                return (
-                                    <li>Laatste afspraak: {hallo.dateOfAppointment}</li>
-
-                                )
-                            })}
+                            <p><strong>Advies:</strong>{advice} </p>
+                            <p><strong>Product Advies:</strong>{productAdvice} </p>
+                            <p><strong>Laatste Afspraak:</strong>{dateOfAppointment}</p>
+                        </div>
                         </>}
 
 
-
-
-                    </span>
-
-                    <p>Terug naar de
-                        <Link to="/"> Homepagina </Link></p>
                 </div>
 
-
             </div>
+            <div className="bottom-profile">
+                <div className="foto-form">
+            <form encType='multipart/form-data' className="uploadProfile" onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="profile"></label>
+                <p {...register("username")}/>
 
+                <input type="file"
+                       id="file"
+                       name="profilepic"
+                       {...register("profile")}
+                       onChange={fileMaker}
+
+                />
+                <button type="submit"
+                        className="upload"
+                >
+                    upload foto
+                </button>
+                {error && <p className="error-message">{error}</p>}
+
+            </form>
+            </div>
+                <div className="profile-link">
+            <p>Terug naar de
+                <Link to="/"> Homepagina </Link></p></div>
+        </div>
         </>
     );
 }
 
 export default Profile;
+
+

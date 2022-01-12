@@ -1,12 +1,10 @@
 .profile-content {
     width: 100%;
     margin: 10px;
-    display: inline-flex;
+    display: flex;
     flex-direction: row;
-    padding-right: 20px;
-
-
-    /*background-color: #61dafb;*/
+    align-items: center;
+    padding-left: 180px;
 }
 
 .photo-container {
@@ -15,15 +13,18 @@
     justify-content: space-between;
     margin: .5rem;
     padding-right: 20px;
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
+    border-style:  dotted;
+    border-width: 0.2px;
 
 
 
 }
 .user-details {
     display: flex;
-    flex-direction: column;
-    align-items: revert;
-    width: 25%;
+    flex-direction: row;
 
 }
 .user-history{
@@ -32,13 +33,53 @@
 
 
 }
-.before{
-    border: 1px dashed;
-}
-.after{
-    border: 1px dashed;
+
+
+.profileheader{
+    display: flex;
+    justify-content: center;
+    margin-left: 10%;
+    margin-top: 20px;
+    height: 40px;
+    border-radius: 10px;
+    align-items: center;
+    background-color:darkseagreen;
+    width: 80%;
+    border: 1px;
+
 }
 
+.bottom-profile{
+    background-color:darkseagreen;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 10%;
+    margin-top: 20px;
+    height: 40px;
+    border-radius: 10px;
+    width: 80%;
+    margin-right: 20px;
+}
+.foto-form{
+   display: flex;
+    flex-direction: row;
+    justify-content: left;
+    margin-left: 15px;
+    /*width:300px ;*/
+    /*background-color: deeppink;*/
+}
+.user{
+    /*background-color: green;*/
+    width: 200%;
+    display: flex;
+    flex-direction: column;
+    /*flex-wrap: nowrap;*/
+
+}
+.profile-link{
+    margin-right: 20px;
+}
 
 
 
