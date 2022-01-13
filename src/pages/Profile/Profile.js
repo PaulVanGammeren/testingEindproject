@@ -4,8 +4,7 @@ import {AuthContext} from "../../components/Auth/AuthContext";
 import axios from 'axios';
 import "./profile.css"
 import "./NatureSkins.preview-2.jpg"
-import pic from "../../assets/downloaden(1).png"
-import pic2 from "../../assets/logoklein2.0.jpg"
+import pic from "../../assets/img.png"
 import {useForm} from "react-hook-form";
 
 function Profile() {
@@ -52,6 +51,8 @@ function Profile() {
                 setProductAdvice ((result.data.consult[result.data.consult.length -1].productAdvice))
                 setDateOfAppointment (result.data.consult[result.data.consult.length -1].dateOfAppointment)
 
+
+
             //
             } catch (e) {
                 console.error(e);
@@ -63,7 +64,7 @@ function Profile() {
     }, [user])
 
 
-
+    console.log(advice)
     async function onSubmit() {
 
         const token = localStorage.getItem('token');
@@ -85,6 +86,8 @@ function Profile() {
 
             console.log("foto is geupload")
             setSubmitSuccess(true);
+            alert('Uploaden is gelukt');
+            window.location.reload();
 
         } catch (error) {
 
@@ -109,13 +112,12 @@ function Profile() {
 
                         {Object.keys(profileData).length > 0 && <>
                             <div className="photo-container">
-                                {imageOne === '' ? <img className="img" src={pic} alt="before"/> : <img  src={imageOne} alt="profile"  />}
-                                <p>before foto</p>
+                                {imageOne === '' ? <img className="img" src={pic} alt="before"/> : <img className="img"  src={imageOne} alt="profile"  />}
+
 
                          </div>
                                 <div className="photo-container">
-                                {imageTwo === '' ? <img src={pic2} alt="after"/> : <img src={imageTwo} alt="profile"  />}
-                                    <p>after foto</p>
+                                {imageTwo === '' ? <img className="img" src={pic} alt="after"/> : <img className="img" src={imageTwo} alt="profile"  />}
                                 </div>
                             < div className="user">
                             <p><strong>Name:</strong>{profileData.username}</p>

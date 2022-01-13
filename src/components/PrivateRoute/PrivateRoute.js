@@ -10,7 +10,7 @@ function PrivateRoute({isAut, children, ...rest}){
     return(
         <Route {...rest}>
 
-            {isAuth  ? children : history.push('/profile')}
+            {isAuth  ? children : history.push('/')}
         </Route>
     )
 }

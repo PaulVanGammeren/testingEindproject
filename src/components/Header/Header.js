@@ -6,7 +6,7 @@ import {AuthContext} from "../Auth/AuthContext";
 
 function Header() {
 
-     const {isAuth, logout} = useContext(AuthContext)
+     const {isAuth, isAdmin, logout} = useContext(AuthContext)
 
 
     return (
@@ -38,8 +38,13 @@ function Header() {
                             <NavLink to="/profile" activeClassName='active-link'>Profile</NavLink>}
                     </li>
 
-                    <li><a href="*">blog </a></li>
-                    <li><a href="/contact">contact</a></li>
+                    <li>
+                        {isAuth && isAdmin ? <NavLink to="/admin" activeClassName="active-link">admin page</NavLink>:
+                        <a href="*">blog </a>}
+                        </li>
+                    <li>{isAuth && isAdmin? <NavLink to="/employee" activeClassName="active-link">klanten beheer</NavLink> :
+                        <a href="/contact">contact</a>}
+                    </li>
 
                 </ul>
             </header>

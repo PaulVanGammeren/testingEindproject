@@ -1,41 +1,32 @@
-import React, {useContext} from 'react';
+import React, {useState} from 'react';
 import AgendaBlocks from "../../components/AgendaBlocks/AgendeBlocks";
 import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
-import {AuthContext} from "../../components/Auth/AuthContext";
-
 
 
 
 function NewAdvicePage() {
-    const {user} = useContext(AuthContext);
 
     const {register, handleSubmit} = useForm();
     const history = useHistory();
-//usernamen nog ophalen
+    const [messageValue, setMessageValue] = useState("")
+
+
     async function onSubmit(data) {
-
-        // setError('');
-
         console.log(data);
-        // console.log(data.productAdvice.join())
-        //http://localhost:8080/consult/{username} aanpassen
+
         try {
-            const result = await axios.post(`http://localhost:8080/consult/${user.username}`, {
-                // headers: {
-                //         "Content-Type": "application/json",
+             await axios.post(`http://localhost:8080/consult/${messageValue}`, {
 
                     dateOfAppointment: data.dateOfAppointment,
-                    advice: data.Advice,
+                    advice: data.advice,
                     productAdvice: data.productAdvice.join()
                  });
 
-            console.log(result);
-
             setTimeout(() => {
                 history.push('/employee');
-            }, 2000);
+            }, 1500);
         } catch (e) {
             console.error(e);
         }
@@ -79,10 +70,22 @@ function NewAdvicePage() {
                                   onSubmit={handleSubmit(onSubmit)}
                                 >
                                 <fieldset klant advies>
+                                <label htmlFor="form-klant"><strong>naam klant: </strong>
+                                    <input
+                                        type="text"
+                                        id="form-message"
+                                        name="message"
+                                        value={messageValue}
+                                        placeholder="klant"
+                                        onChange={(e) => setMessageValue(e.target.value)}
+
+                                    /> </label>
+
+
                                     <legend> afspraak details</legend>
                                     <div>
-                            {/**/}
-                                        <label htmlFor="dateOfAppointment"><strong>datum afspraak</strong>
+
+                                        <label htmlFor="dateOfAppointment"><strong>datum afspraak: </strong>
                                         <input type="date"
                                                id="dateOfAppointment"
                                                name="dateOfAppointment"
@@ -92,7 +95,7 @@ function NewAdvicePage() {
                                     <br></br>
 
                                     <div>
-                                        <label htmlFor="productAdvice"><strong>product advies</strong> <br></br>
+                                        <label htmlFor="productAdvice"><strong>product advies: </strong> <br></br>
                                         <label htmlFor="product1"> dagcreme</label>
                                         <input type="checkbox" id="product1" name="dagcreme" value="dagcreme"
                                                {...register("productAdvice")}/>
@@ -106,14 +109,12 @@ function NewAdvicePage() {
                                     </div>
 
 
-                                    <label htmlFor="advice"><strong>Advies</strong></label>
+                                    <label htmlFor="advice"><strong>Advies: </strong></label>
                                     <input type="text" name="advice" id="advice"
                 placeholder="advies en huidconditie klant"
-                                           {...register("Advice")}/>
-                            {/**/}
-                            {/**/}
+                                           {...register("advice")}/>
+
                                     <button type="submit" id="advice-client">submit</button>
-                                {/**/}
                                 </fieldset>
                             </form>
 

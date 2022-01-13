@@ -1,5 +1,5 @@
 import React from "react";
- import {Switch, Route} from 'react-router-dom';
+ import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from "./components/Footer/Footer";
@@ -14,6 +14,7 @@ import ContactPage from "./pages/ContactPage/ContactPage";
 import NewAdvicePage from "./pages/NewAdvice/NewAdvice";
 import PrivateAdminRoute from "./components/PrivateRoute/PrivateRouteAdmin";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
+import PrivateRouteAdmin from "./components/PrivateRoute/PrivateRouteAdmin";
 
 
 function App() {
@@ -30,17 +31,17 @@ function App() {
                   {/*Open route  */}
                   <Route exact path="/SignUp"> <SignUp /> </Route>
                   {/*Private User  */}
-                  <Route exact path="/profile"> <Profile /> </Route>
+                  <PrivateRoute exact path="/profile"> <Profile /> </PrivateRoute>
                   {/*private admin*/}
-                  <Route exact path="/Admin"> <AdminPage /> </Route>
+                  <PrivateRouteAdmin exact path="/Admin"> <AdminPage /> </PrivateRouteAdmin>
                   {/*Private Admin*/}
-                  <Route exact path="/employee"> <EmployeePage /> </Route>
+                  <PrivateRouteAdmin exact path="/employee"> <EmployeePage /> </PrivateRouteAdmin>
                   {/*Private Admin */}
                   <Route exact path="/createAccount"> <CreateAccount /> </Route>
                   {/*Open route*/}
                   <Route exact path="/contact"> <ContactPage /> </Route>
                   {/*Private Route Admin*/}
-                  <Route exact path="/newAdvice"> <NewAdvicePage /> </Route>
+                  <PrivateRouteAdmin exact path="/newAdvice"> <NewAdvicePage /> </PrivateRouteAdmin>
 
 
               </Switch>

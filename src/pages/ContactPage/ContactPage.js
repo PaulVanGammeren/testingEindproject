@@ -23,7 +23,7 @@ function ContactPage() {
 
                     </form>
                 </div>
-                <div>
+                <div className="contact-info">
                     <p><u><strong>Contactgegevens</strong><br/>
                         <strong>Telefoon</strong><br/>
                         020 627 6732<br/>

@@ -48,6 +48,7 @@ function AuthContextProvider({children}) {
         toggleIsAuth({
             isAuth: false,
             user: null,
+            isAdmin: false,
             status: 'done',
         });
 
@@ -113,6 +114,7 @@ function AuthContextProvider({children}) {
     const contextData = {
         isAuth: isAuth.isAuth,
         user: isAuth.user,
+        isAdmin: isAuth.isAdmin,
         login: login,
         logout: logout,
     };

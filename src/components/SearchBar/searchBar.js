@@ -3,14 +3,15 @@ import './SearchBar.css';
 
 
 function SearchBar({ setUsernameHandler }) {
-    const [query, setQuery] = useState('');
+    // const [query, setQuery] = useState('');
+    const [username, setUsername] = useState("")
 
 
     function onFormSubmit(e) {
         e.preventDefault();
         console.log('submitted!');
-        console.log(query)
-        setUsernameHandler(query);
+        console.log(username);
+
 
     }
 
@@ -19,8 +20,8 @@ function SearchBar({ setUsernameHandler }) {
             <input
                 type="text"
                 name="search"
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="zoek een gebruiker"
             />
 

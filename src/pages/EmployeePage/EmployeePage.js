@@ -2,32 +2,45 @@ import React, {useState} from 'react';
 import "./EmployeePage.css";
 import AgendaBlocks from "../../components/AgendaBlocks/AgendeBlocks";
 import axios from "axios";
-import SearchBar from "../../components/Searchbar";
+ import SearchBar from "../../components/SearchBar/searchBar";
 import {NavLink} from "react-router-dom";
-import pic from "../../assets/downloaden(1).png";
-import pic2 from "../../assets/logoklein2.0.jpg";
+import pic from "../../assets/img.png";
+
+
+
+
+
 
 function EmployeePage() {
     const [username, setUsername] = useState("");
-    // const [userData, setUserData] = useState({});
-    const [picOne, setPicOne] = useState('');
+    const [userData, setUserData] = useState({});
+    const [picOne, setPicOne] = useState(null);
     const [name, setName] = useState("geen klant geselecteerd");
     const [email, setEmail] = useState("");
-    const [advice, setAdvice] = useState("")
-    const [dateOfAppointment, setDateOfAppointment] = useState("")
-    const [productAdvice, setProductAdvice] = useState ("")
+    const [advice, setAdvice] = useState("Klant heeft nog geen huidadvies gehad")
+    const [dateOfAppointment, setDateOfAppointment] = useState("klant heeft nog geen eedere behandeling gehad")
+    const [productAdvice, setProductAdvice] = useState ("Klant heeft nog geen product advies gehad")
+    const [messageValue, setMessageValue] = useState("")
 
 
-    async function getData() {
+    async function getData(e) {
+        e.preventDefault()
+
         try {
-            const result = await axios.get(`http://localhost:8080/users/${username}`)
-            // setUserData(result.data)
-            setPicOne(`data:image/jpeg;base64,${result.data.image[0].file}`)
+            const result = await axios.get(`http://localhost:8080/users/${messageValue}`)
+            console.log(result.data)
+            setUserData(result.data)
+            // const pixIndex = result.data.image.length
             setName(result.data.username)
             setEmail(result.data.email)
             setAdvice(result.data.consult[result.data.consult.length -1].advice)
             setProductAdvice(result.data.consult[result.data.consult.length -1].productAdvice)
             setDateOfAppointment(result.data.consult[result.data.consult.length -1].dateOfAppointment)
+            if(result.data.image[0].file != null) {
+                setPicOne(`data:image/jpeg;base64,${result.data.image[0].file}`)
+            }
+
+
         } catch (e) {
             console.error(e)
 
@@ -68,25 +81,39 @@ function EmployeePage() {
             <div className="agenda-container2">
                 <div>
 
-                    <SearchBar  onclick={setUsername}
-                    />
+                    <form>
+                        <label htmlFor="form-klant">
+                            <input
+                                type="text"
+                                id="form-message"
+                                name="message"
+                                value={messageValue}
+                                placeholder="zoek klant"
+                                onChange={(e) => setMessageValue(e.target.value)}
+
+                                /> </label>
+
+                        <button onClick={getData}  >zoek</button>
+                    </form>
 
 
 
 
                 </div>
                 <div>
-
+                    {/*{Object.keys(userData).length > 0 && <>*/}
                         <div className="photo-container">
-                            {picOne === '' ? <img className="img" src={pic} alt="before"/> : <img  src={picOne} alt="profile"  />}
+                            {picOne === null ? <img className="user-img" src={pic} alt="before"/> : <img  className="user-img" src={picOne} alt="profile"  />}
                         </div>
+                        <div>
 
                     <p><strong>Naam:</strong>{name}</p>
                     <p><strong>Email:</strong>{email} </p>
                     <p><strong>Advies:</strong>{advice} </p>
                     <p><strong>Product Advies:</strong>{productAdvice} </p>
                     <p><strong>Laatste Afspraak:</strong>{dateOfAppointment}</p>
-
+                        </div>
+                {/*</>}*/}
 
                 </div>
 

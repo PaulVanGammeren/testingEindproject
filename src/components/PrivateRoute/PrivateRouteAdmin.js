@@ -9,7 +9,7 @@ function PrivateAdminRoute({isAut, children, ...rest}){
 
     return(
         <Route {...rest}>
-            {isAuth && isAdmin ? children : history.push('/admin')}
+            {isAuth && isAdmin ? children : history.push('/')}
         </Route>
     )
 }

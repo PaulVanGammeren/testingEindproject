@@ -22,11 +22,10 @@ function CreateAccount() {
         console.log(data);
 
         try {
-            const result = await axios.post('', {
+            const result = await axios.post(`http://localhost:8080/users`, {
                 email: data.email,
                 password: data.password,
                 username: data.username,
-                role: data.role,
             });
 
 
@@ -104,11 +103,6 @@ function CreateAccount() {
 
 
 
-                <label> gebruikersrol: </label>
-                <input type="radio" id="admin" name="role" value="Admin"/>
-                    <label htmlFor="admin">Admin</label>
-                    <input type="radio" id="user" name="role" value="User"/>
-                        <label htmlFor="user">User</label>
                 <button
                     type="submit"
                     className="form-button"
