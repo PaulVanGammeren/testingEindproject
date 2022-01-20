@@ -1,10 +1,10 @@
-import React, {useContext, useState} from 'react';
+import React, { useState} from 'react';
 import AgendaBlocks from "../../components/AgendaBlocks/AgendeBlocks";
 import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
 import img3 from "../../assets/StudioAnnemarije - Natureskins.web-45.jpg";
-import {AuthContext} from "../../components/Auth/AuthContext";
+
 
 function NewAdvicePage() {
 
@@ -12,7 +12,7 @@ function NewAdvicePage() {
     const [error, toggleError] = useState(false )
     const history = useHistory();
     const [messageValue, setMessageValue] = useState("")
-    // const {user} = useContext(AuthContext)
+
 
 
 

@@ -51,7 +51,7 @@ function AuthContextProvider({children}) {
             status: 'done',
         });
 
-        console.log('Gebruiker is uitgelogd!');
+
         history.push('/');
     }
 

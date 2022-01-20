@@ -15,7 +15,7 @@ function EmployeePage() {
 
     const [picOne, setPicOne] = useState(null);
     const [data, setData] = useState(null )
-    const [error, toggleError] = useState(false )
+    const [toggleError] = useState(false )
     const [name, setName] = useState("geen klant geselecteerd");
     const [email, setEmail] = useState("");
     const [advice, setAdvice] = useState("Klant heeft nog geen huidadvies gehad")

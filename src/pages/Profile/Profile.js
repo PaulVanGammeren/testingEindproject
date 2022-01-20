@@ -39,7 +39,7 @@ function Profile() {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                console.log(result.data)
+
                 setProfileData(result.data);
                 const picIndex = result.data.image.length
                 setImageOne(`data:image/jpeg;base64,${result.data.image[0].file}`)
