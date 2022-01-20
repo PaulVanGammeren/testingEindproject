@@ -1,13 +1,87 @@
-.littlered {
-    color: red;
-    font-color:red;
-    font-size: 8px;
-}
 
-.registratie{
+body {
+    margin:  0;
+}
+.page-content {
 
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    background: rgb(143,188,143);
+    background: radial-gradient(circle, rgba(143,188,143,1) 0%, rgba(143,188,143,0.3029586834733894) 4%, rgba(255,255,255,1) 100%);
 }
+.form-v6-content  {
+    background:darkseagreen;
+    width: 968px;
+    border-radius: 8px;
+    margin: 150px 0;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+    display: flex;
+
+}
+.form-content .form-left {
+    margin-bottom: -6px;
+}
+.img3 {
+    width: 300px;
+    hight:605px;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+}
+
+.form-content .form-detail {
+    padding: 30px 40px;
+    position: relative;
+    width: 100%;
+}
+.form-v6-content .form-detail h1 {
+    color: #fff;
+    font-size: 35px;
+    text-align: center;
+    padding: 6px 0 0;
+}
+.form-v6-content .form-row {
+    width: 90%;
+    margin-left: 15px;
+
+
+}
+.account{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+.form-v6-content .form-detail .form-row-last {
+    text-align: center;
+}
+.form-v6-content .form-detail .input-text {
+    margin-bottom: 35px;
+}
+.form-v6-content .form-detail input {
+    width: 92%;
+    padding: 0px 15px 10px 15px;
+    border: 2px solid transparent;
+    border-bottom: 2px solid #e5e5e5;
+    appearance: unset;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+}
+.form-button {
+    background: #fe892a;
+    border-radius: 6px;
+    width: 160px;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.15);
+    border: none;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+
 

@@ -2,6 +2,8 @@ import React, {useState, useRef} from "react";
 import "./accordion.css"
 import Icon from "./icon";
 
+//created accordion, in final design removed it due to complications
+
 function Accordion(props){
 
     const [active, setActive] = useState("")

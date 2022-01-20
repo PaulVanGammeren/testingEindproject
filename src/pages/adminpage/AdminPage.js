@@ -4,7 +4,7 @@ import { NavLink} from 'react-router-dom';
 
 import "./admin.css"
 
-
+// At this part of the app i want to implement some more features like agenda or overview employees
 function AdminPage() {
 
 

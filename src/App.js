@@ -1,5 +1,5 @@
 import React from "react";
- import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+ import { Switch, Route} from 'react-router-dom';
 import './App.css';
 import Header from './components/Header/Header';
 import Footer from "./components/Footer/Footer";
@@ -12,7 +12,6 @@ import AdminPage from "./pages/adminpage/AdminPage";
 import CreateAccount from "./pages/SignUpPage/createAccount";
 import ContactPage from "./pages/ContactPage/ContactPage";
 import NewAdvicePage from "./pages/NewAdvice/NewAdvice";
-import PrivateAdminRoute from "./components/PrivateRoute/PrivateRouteAdmin";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PrivateRouteAdmin from "./components/PrivateRoute/PrivateRouteAdmin";
 

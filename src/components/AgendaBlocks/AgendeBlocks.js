@@ -2,6 +2,8 @@ import React from "react";
 
 function AgendaBlocks ({name, treatment, time}){
 
+    // created block for agenda as reusalble components
+
     return (
         <div className="agenda">
             <div className="agenda-content">

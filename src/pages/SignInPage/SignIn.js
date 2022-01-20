@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import {AuthContext} from "../../components/Auth/AuthContext";
 import "./SignIn.css"
+import img3 from "../../assets/StudioAnnemarije - Natureskins-20.jpg";
 
 
 // STAPPENPLAN CONTEXT TESTEN (4)
@@ -27,7 +28,7 @@ import "./SignIn.css"
 
 function SignIn() {
     const { handleSubmit, register } = useForm();
-    const { login } = useContext(AuthContext);
+    const {login} = useContext(AuthContext);
     const [error, setError] = useState('');
 
     async function onSubmit(data) {
@@ -41,7 +42,6 @@ function SignIn() {
                 password :data.password,
 
             });
-            console.log(result);
             //geeft jwt aan de context
             login(result.data.jwt);
 
@@ -55,38 +55,65 @@ function SignIn() {
     return (
         <>
 
-            <h1 className="login">Inloggen</h1>
-            <p className="loginP">Log in om uw gegevens in te zien</p>
 
-            <form className="userlogin" onSubmit={handleSubmit(onSubmit)}>
-                <label htmlFor="username-field">
-                    Username:
-                    <input
-                        type="username"
-                        id="username-field"
-                        name="username"
-                        {...register("username")}
-                    />
-                </label>
 
-                <label htmlFor="password-field">
-                    Wachtwoord:
-                    <input
-                        type="password"
-                        id="password-field"
-                        name="password"
-                        {...register("password")}
-                    />
-                </label>
-                <button
-                    type="submit"
-                    className="form-button"
-                >
-                    Inloggen
-                </button>
 
-            </form> {error && <p className="error-message">{error}</p>}
-            <p className="bottom-login">Heb je nog geen account?&nbsp;<Link to="/signup">Registreer</Link> &nbsp;je dan eerst.</p>
+            <div className="page-content">
+
+            </div>
+            <div className="page-content">
+                <div className="form-v6-content">
+                    <div className="form-left">
+                        <img className="img3" src={img3} alt="form"/>
+                    </div>
+                    {/*<div className="form-detail">*/}
+                    <form className="form-detail" onSubmit={handleSubmit(onSubmit)}>
+                        <h1> Inloggen</h1>
+                        {/*<p className="loginP">Log in om uw gegevens in te zien</p>*/}
+
+                        <div className="form-row">
+                            <label htmlFor="username-field">
+                                Username:
+                                <input
+                                    className="input-text"
+                                    type="username"
+                                    id="username-field"
+                                    name="username"
+                                    {...register("username")}
+                                />
+                            </label>
+                        </div>
+                        <div className="form-row">
+
+                            <label htmlFor="password-field">
+                                Wachtwoord:
+                                <input
+                                    className="input-text"
+                                    type="password"
+                                    id="password-field"
+                                    name="password"
+                                    {...register("password")}
+                                />
+                            </label>
+                        </div>
+                        <div className="form-row-last">
+                            <button
+                                type="submit"
+                                className="form-button"
+                            >
+                                Inloggen
+                            </button>
+
+                         {error && <p className="error-message">{error}</p>}
+                        <p className="account">Heb je nog geen account?&nbsp;<Link to="/signup">Registreer</Link> &nbsp;je dan eerst.</p>
+
+                        </div>
+                        </form>
+                    </div>
+
+
+                </div>
+            {/*</div>*/}
         </>
     );
 }

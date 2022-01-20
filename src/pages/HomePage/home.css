@@ -5,14 +5,23 @@
 
 }
 .banner{
+    width: 75%;
+    border-radius: 20px;
+
+}
+
+.home {
+
     display: flex;
+    display: -webkit-flex;
     justify-content: center;
     align-items: center;
-    padding: 25px;
-}
+    background: rgb(143,188,143);
+    background: radial-gradient(circle, rgba(143,188,143,1) 0%, rgba(143,188,143,0.3029586834733894) 4%, rgba(255,255,255,1) 100%);
 
-.home-content{
+}
+.account{
     display: flex;
     justify-content: center;
-
 }
+

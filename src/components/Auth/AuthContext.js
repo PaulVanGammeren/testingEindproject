@@ -36,7 +36,6 @@ function AuthContextProvider({children}) {
         localStorage.setItem('token', JWT);
         // decode de token zodat we de ID van de gebruiker hebben en data kunnen ophalen voor de context
         const decoded = jwt_decode(JWT);
-        console.log(decoded)
         // geef de ID, token en redirect-link mee aan de fetchUserData functie (staat hieronder)
         fetchUserData(decoded.sub, JWT, '/profile');
         history.push('/profile');
@@ -61,7 +60,7 @@ function AuthContextProvider({children}) {
         try {
             // haal gebruikersdata op met de token en id van de gebruiker
             const result = await axios.get(`http://localhost:8080/users/${id}`, {
-                //juiste URL moet nog worden ingevoerd
+
                 headers: {
                     "Content-Type": "application/json",
                     Authorization: `Bearer ${token}`,
@@ -69,11 +68,7 @@ function AuthContextProvider({children}) {
             });
             const username = result.data.username;
 
-            if (username === 'admin') {
-                admin = true;
-            } else {
-                admin = false;
-            }
+            admin = username === 'admin';
 
 
             toggleIsAuth({
@@ -84,7 +79,6 @@ function AuthContextProvider({children}) {
                     username: result.data.username,
                     email: result.data.email,
                     consult: result.data.consult.advice,
-                    fullname: result.data.fullName,
                     id: result.data.id,
                     history: result.data.consult.dateOfAppointment,
                     product: result.data.consult.productAdvice,

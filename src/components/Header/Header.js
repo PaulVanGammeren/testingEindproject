@@ -38,12 +38,13 @@ function Header() {
                             <NavLink to="/profile" activeClassName='active-link'>Profile</NavLink>}
                     </li>
 
+                    {/*the BLOG link is now blanc, this will be a link to the website of the store. left it out for now to prevent mistakes*/}
                     <li>
                         {isAuth && isAdmin ? <NavLink to="/admin" activeClassName="active-link">admin page</NavLink>:
-                        <a href="*">blog </a>}
+                        <a href="/">blog </a>}
                         </li>
                     <li>{isAuth && isAdmin? <NavLink to="/employee" activeClassName="active-link">klanten beheer</NavLink> :
-                        <a href="/contact">contact</a>}
+                        <NavLink to="/contact">contact</NavLink>}
                     </li>
 
                 </ul>

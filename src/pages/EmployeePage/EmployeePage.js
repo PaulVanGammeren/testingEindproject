@@ -2,19 +2,20 @@ import React, {useState} from 'react';
 import "./EmployeePage.css";
 import AgendaBlocks from "../../components/AgendaBlocks/AgendeBlocks";
 import axios from "axios";
- import SearchBar from "../../components/SearchBar/searchBar";
 import {NavLink} from "react-router-dom";
 import pic from "../../assets/img.png";
 
 
 
+// agenda blocks are now hard coded, and won't change, a nice wanna have is to import the agenda from the booking system and have a daily overview of the schedule.
 
 
 
 function EmployeePage() {
-    const [username, setUsername] = useState("");
-    const [userData, setUserData] = useState({});
+
     const [picOne, setPicOne] = useState(null);
+    const [data, setData] = useState(null )
+    const [error, toggleError] = useState(false )
     const [name, setName] = useState("geen klant geselecteerd");
     const [email, setEmail] = useState("");
     const [advice, setAdvice] = useState("Klant heeft nog geen huidadvies gehad")
@@ -29,8 +30,7 @@ function EmployeePage() {
         try {
             const result = await axios.get(`http://localhost:8080/users/${messageValue}`)
             console.log(result.data)
-            setUserData(result.data)
-            // const pixIndex = result.data.image.length
+            setData(result.data)
             setName(result.data.username)
             setEmail(result.data.email)
             setAdvice(result.data.consult[result.data.consult.length -1].advice)
@@ -41,8 +41,10 @@ function EmployeePage() {
             }
 
 
+
         } catch (e) {
             console.error(e)
+            toggleError(true)
 
         }
 
@@ -77,51 +79,60 @@ function EmployeePage() {
 
             </div>
 
+            <div className="page-content">
+                <div className="form-v6-content">
+                    <div className="form-left">
+                        {picOne === null ? <img className="user-img" src={pic} alt="before"/> : <img  className="user-img" src={picOne} alt="profile"  />}
+                    </div>
+                    <div className="agenda-container2">
+                        <div>
 
-            <div className="agenda-container2">
-                <div>
+                            <form>
+                                <label htmlFor="form-klant">
+                                    <input
+                                        type="text"
+                                        id="form-message"
+                                        name="message"
+                                        value={messageValue}
+                                        placeholder="zoek klant"
+                                        onChange={(e) => setMessageValue(e.target.value)}
 
-                    <form>
-                        <label htmlFor="form-klant">
-                            <input
-                                type="text"
-                                id="form-message"
-                                name="message"
-                                value={messageValue}
-                                placeholder="zoek klant"
-                                onChange={(e) => setMessageValue(e.target.value)}
+                                    /> </label>
 
-                                /> </label>
-
-                        <button onClick={getData}  >zoek</button>
-                    </form>
+                                <button onClick={getData}  >zoek</button>{data === null && <span> gebruiker niet gevonden </span>}
+                            </form>
 
 
 
 
-                </div>
-                <div>
-                    {/*{Object.keys(userData).length > 0 && <>*/}
-                        <div className="photo-container">
-                            {picOne === null ? <img className="user-img" src={pic} alt="before"/> : <img  className="user-img" src={picOne} alt="profile"  />}
                         </div>
                         <div>
 
-                    <p><strong>Naam:</strong>{name}</p>
-                    <p><strong>Email:</strong>{email} </p>
-                    <p><strong>Advies:</strong>{advice} </p>
-                    <p><strong>Product Advies:</strong>{productAdvice} </p>
-                    <p><strong>Laatste Afspraak:</strong>{dateOfAppointment}</p>
-                        </div>
-                {/*</>}*/}
 
+                            <div className="form-row">
+
+                                <p><strong>Naam:</strong>{name}</p>
+                                <p><strong>Email:</strong>{email} </p>
+                                <p><strong>Advies:</strong>{advice} </p>
+                                <p><strong>Product Advies:</strong>{productAdvice} </p>
+                                <p><strong>Laatste Afspraak:</strong>{dateOfAppointment}</p>
+                            </div>
+
+                        </div>
+
+                        <NavLink to="/newAdvice" exact activeClassName="active-link">nieuw advies</NavLink>
+
+
+                    </div>
                 </div>
 
-                <NavLink to="/newAdvice" exact activeClassName="active-link">nieuw advies</NavLink>
 
 
+
+                </div>
             </div>
-        </div>
+
+
 
 
     )

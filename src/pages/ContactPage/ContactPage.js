@@ -1,27 +1,98 @@
 import React from "react";
-import {Link} from "react-router-dom";
 import "./contact.css"
+import img3 from "../../assets/StudioAnnemarije - Natureskins.web-2.jpg";
+import {Link} from "react-router-dom";
+import {useForm} from "react-hook-form";
 
+//created a contact page, at this moment it is not functioning due to no back end site. Want to implement in the future a direct mail is send to the company email.
 
 function ContactPage() {
 
+
+    const {handleSubmit, register} = useForm();
 
     return (
         <>
             <div className="contact-content">
                 <div className="contact-content-form" >
-                    <form className="contact-form">
+                    <div className="page-content">
+                        <div className="form-v6-content">
+                            <div className="form-left">
+                                <img className="img3" src={img3} alt="form"/>
+                            </div>
+                            <form className="form-detail" onSubmit={handleSubmit()}>
+                                <h1>Contact</h1>
+                                <div className="form-row">
+                                    <label htmlFor="email-field">
+                                        Email:
+                                        <input
+                                            className="input-text"
+                                            type="email"
+                                            // placeholder="email"
+                                            id="email-field"
+                                            name="email"
+                                            {...register("email", {
+                                                    required: "email is een verplicht veld",
+                                                    minLength: {
+                                                        value: 6,
+                                                        message: "email adres moet minstens 6 tekens bevatten",
+                                                    }
+                                                },
+                                            )}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="form-row">
 
-                            <legend><u><strong>Contactformulier</strong></u></legend>
-                            <label htmlFor="name">Name:</label>
-                            <input type="text" id="name" name="name" placeholder="voer uw naam in"/>
-                            <label htmlFor="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="voer uw email in"/>
-                            <label htmlFor="message"> Uw bericht: </label>
-                            <textarea className="contact-text" name="message" placeholder="voer uw bericht in"></textarea>
-                            <input type="submit" value="Submit"/>
+                                    <label htmlFor="username-field">
+                                        Naam:
+                                        <input
+                                            className="input-text"
+                                            type="text"
+                                            id="username-field"
+                                            name="username"
+                                            {...register("username", {
+                                                required: "username is verplicht",
 
-                    </form>
+                                            })}
+
+                                        />
+
+
+                                    </label>
+                                </div>
+                                <div className="form-row">
+                                    <label htmlFor="message-field">
+                                       Bericht:
+                                        <input
+                                            className="input-text"
+                                            type="text"
+                                            id="text-field"
+                                            rows="3"
+                                            name="message"
+
+                                            {...register("message"
+
+                                            )}
+                                        />
+                                    </label>
+                                </div>
+                                <div className="form-row-last">
+                                    <button
+                                        type="submit"
+                                        className="form-button"
+                                    >
+                                        Verstuur
+                                    </button>
+                                    <p className="account">Terug naar je  <Link
+                                        to="/profile">&nbsp; Profiel &nbsp;</Link> pagina.</p>
+                                </div>
+
+
+                            </form>
+
+                        </div>
+                    </div>
                 </div>
                 <div className="contact-info">
                     <p><u><strong>Contactgegevens</strong><br/>

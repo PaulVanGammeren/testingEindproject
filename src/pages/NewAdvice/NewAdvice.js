@@ -1,39 +1,46 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import AgendaBlocks from "../../components/AgendaBlocks/AgendeBlocks";
 import axios from "axios";
 import {useForm} from 'react-hook-form';
 import {useHistory} from "react-router-dom";
-
-
+import img3 from "../../assets/StudioAnnemarije - Natureskins.web-45.jpg";
+import {AuthContext} from "../../components/Auth/AuthContext";
 
 function NewAdvicePage() {
 
     const {register, handleSubmit} = useForm();
+    const [error, toggleError] = useState(false )
     const history = useHistory();
     const [messageValue, setMessageValue] = useState("")
+    // const {user} = useContext(AuthContext)
+
 
 
     async function onSubmit(data) {
-        console.log(data);
+
+        const token = localStorage.getItem('token');
 
         try {
-             await axios.post(`http://localhost:8080/consult/${messageValue}`, {
 
-                    dateOfAppointment: data.dateOfAppointment,
-                    advice: data.advice,
-                    productAdvice: data.productAdvice.join()
-                 });
+            await axios.post(`http://localhost:8080/consult/${messageValue}`, {
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`,
+                },
+
+                dateOfAppointment: data.dateOfAppointment,
+                advice: data.advice,
+                productAdvice: data.productAdvice.join()
+            });
 
             setTimeout(() => {
                 history.push('/employee');
             }, 1500);
         } catch (e) {
             console.error(e);
+            toggleError(true)
         }
     }
-
-
-
 
 
     return (
@@ -63,39 +70,45 @@ function NewAdvicePage() {
                               time={"15.30 tot 17.00"}/>
 
             </div>
+            <div className="page-content">
+                <div className="form-v6-content">
+                    <div className="form-left">
+                        <img className="img3" src={img3} alt="form"/>
+                    </div>
+                    <div className="advice">
 
+                        <h1>Nieuw advies</h1>
 
-            <div className="agenda-container2">
+                        <div className="agenda-container2">
                             <form className="advice-client" id="advice"
                                   onSubmit={handleSubmit(onSubmit)}
-                                >
-                                <fieldset klant advies>
-                                <label htmlFor="form-klant"><strong>naam klant: </strong>
-                                    <input
-                                        type="text"
-                                        id="form-message"
-                                        name="message"
-                                        value={messageValue}
-                                        placeholder="klant"
-                                        onChange={(e) => setMessageValue(e.target.value)}
+                            >
+                                <div className="form-row">
+                                    <label htmlFor="form-klant"><strong>naam klant: </strong>
+                                        <input
+                                            type="text"
+                                            id="form-message"
+                                            name="message"
+                                            value={messageValue}
+                                            placeholder="klant"
+                                            onChange={(e) => setMessageValue(e.target.value)}
 
-                                    /> </label>
+                                        /> {error === true && <span> gebruiker niet gevonden </span>}</label>
+                                </div>
 
+                                <div className="form-row">
 
-                                    <legend> afspraak details</legend>
-                                    <div>
-
-                                        <label htmlFor="dateOfAppointment"><strong>datum afspraak: </strong>
+                                    <label htmlFor="dateOfAppointment"><strong>datum afspraak: </strong>
                                         <input type="date"
                                                id="dateOfAppointment"
                                                name="dateOfAppointment"
                                                {...register("dateOfAppointment")}/>
-                                        </label>
-                                    </div>
-                                    <br></br>
+                                    </label>
+                                </div>
 
-                                    <div>
-                                        <label htmlFor="productAdvice"><strong>product advies: </strong> <br></br>
+
+                                <div className="form-row">
+                                    <label htmlFor="productAdvice"><strong>product advies: </strong> <br></br>
                                         <label htmlFor="product1"> dagcreme</label>
                                         <input type="checkbox" id="product1" name="dagcreme" value="dagcreme"
                                                {...register("productAdvice")}/>
@@ -105,22 +118,24 @@ function NewAdvicePage() {
                                         <label htmlFor="vehicle3">toner</label>
                                         <input type="checkbox" id="vehicle3" name="product3" value="toner"
                                                {...register("productAdvice")}/>
-                                        </label>
-                                    </div>
+                                    </label>
+                                </div>
+                                <div className="form-row">
 
 
-                                    <label htmlFor="advice"><strong>Advies: </strong></label>
-                                    <input type="text" name="advice" id="advice"
-                placeholder="advies en huidconditie klant"
-                                           {...register("advice")}/>
+                                <label htmlFor="advice"><strong>Advies: </strong></label>
+                                <input type="text" name="advice" id="advice"
 
-                                    <button type="submit" id="advice-client">submit</button>
-                                </fieldset>
+                                       {...register("advice")}/>
+
+                                <button className="form-button" type="submit" id="advice-client">submit</button>
+                        </div>
                             </form>
 
 
-
-
+                        </div>
+                    </div>
+                </div>
 
 
             </div>
